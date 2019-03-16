@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="container">
+
+    <h1 th:text="${title}">Default Title</h1>
+
+    <nav th:replace="fragments :: navigation"></nav>
+
+    <form method="post" style="max-width:600px;" th:object="${event}">
+        <div class="form-group">
+            <label th:for="title">Title</label>
+            <input class="form-control" th:field="*{title}" />
+            <span th:errors="*{title}" class="error"></span>
+        </div>
+
+        <div class="form-group">
+            <label th:for="eventDate">Date (YYYY-MM-DD)</label>
+            <input type="date" class="form-control" th:field="*{eventDate}" th:value="*{eventDate}"/>
+            <span  th:errors="*{eventDate}" class="error"></span>
+        </div>
+
+        <div class="form-group">
+            <label th:for="location">Location</label>
+            <input class="form-control" th:field="*{location}" />
+            <span th:errors="*{location}" class="error"></span>
+        </div>
+
+        <div class="form-group">
+            <label th:for="description">Description</label>
+            <textarea type="textarea" rows="5" class="form-control" th:field="*{description}" />
+            <span th:errors="*{description}" class="error"></span>
+        </div>
+
+        <input type="submit" value="Add Event" />
+    </form>
+
+</body>
+</html>
