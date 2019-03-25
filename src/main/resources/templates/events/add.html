@@ -16,8 +16,8 @@
         </div>
 
         <div class="form-group">
-            <label th:for="eventDate">Date (YYYY-MM-DD)</label>
-            <input type="date" class="form-control" th:field="*{eventDate}" th:value="*{eventDate}"/>
+            <label th:for="eventDate">Date</label>
+            <input id="datetime" type="date" class="form-control" th:field="*{eventDate}" th:value="*{eventDate}"/>
             <span  th:errors="*{eventDate}" class="error"></span>
         </div>
 
@@ -35,6 +35,5 @@
 
         <input type="submit" value="Add Event" />
     </form>
-
 </body>
 </html>

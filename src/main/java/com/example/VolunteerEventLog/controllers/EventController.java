@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -31,7 +29,7 @@ public class EventController {
     }
 
     @RequestMapping(value = "add", method = RequestMethod.GET)
-    public String displayAddEventForm(Model model)
+    public String handledisplayAddEventForm(Model model)
     {
         model.addAttribute("title", "Add Event");
         model.addAttribute(new Event());
@@ -40,13 +38,14 @@ public class EventController {
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String processAddEventForm(
-            @ModelAttribute @Valid Event newEvent,
+    public String handleprocessAddEventForm(
+            @Valid @ModelAttribute Event newEvent,
             Errors errors,
             Model model)
     {
 
-        if (errors.hasErrors()) {
+        if (errors.hasErrors())
+        {
             model.addAttribute("title", "Add Event");
             return "events/add";
         }
