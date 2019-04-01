@@ -20,6 +20,7 @@ public class EventController {
     @Autowired
     private EventDao eventDao;
 
+
     @RequestMapping(value = "")
     public String index(Model model)
     {
@@ -33,7 +34,6 @@ public class EventController {
     {
         model.addAttribute("title", "Add Event");
         model.addAttribute(new Event());
-        //model.addAttribute("");
         return "events/add.html";
     }
 

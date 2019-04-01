@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="container">
+
+<h1 th:text="${title}">Default Title</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<form method="post" style="max-width:600px;" th:object="${volunteer}">
+    <div class="form-group">
+        <label th:for="firstname">First Name:</label>
+        <input class="form-control" th:field="*{firstname}" />
+        <span th:errors="*{firstname}" class="alert alert-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label th:for="lastname">Last Name:</label>
+        <input class="form-control" th:field="*{lastname}" />
+        <span th:errors="*{lastname}" class="alert alert-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <p th:unless="${events} and ${events.size()}"> no events :( </p>
+
+        <label th:for="event">Choose an Event or Events</label>
+        <ul>
+            <li th:each="event : ${events}">
+                <div class="ul checkbox">
+                    <input type="checkbox"
+                           th:field="*{events}"
+                           th:text="${event.title} + ' : ' + ${event.description}"
+                           th:value="${event.id}" />
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <input type="submit" value="Add Volunteer" />
+</form>
+</body>
+</html>
